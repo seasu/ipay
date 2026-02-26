@@ -10,7 +10,8 @@ class GamePage extends StatefulWidget {
   State<GamePage> createState() => _GamePageState();
 }
 
-class _GamePageState extends State<GamePage> with SingleTickerProviderStateMixin {
+class _GamePageState extends State<GamePage>
+    with SingleTickerProviderStateMixin {
   late GameLogic _game;
   final _controller = TextEditingController();
   final _focusNode = FocusNode();
@@ -46,7 +47,8 @@ class _GamePageState extends State<GamePage> with SingleTickerProviderStateMixin
       return;
     }
     if (guess < _game.currentMin || guess > _game.currentMax) {
-      setState(() => _message = '請輸入 ${_game.currentMin} ~ ${_game.currentMax} 之間的數字');
+      setState(() =>
+          _message = '請輸入 ${_game.currentMin} ~ ${_game.currentMax} 之間的數字');
       return;
     }
 
@@ -58,12 +60,15 @@ class _GamePageState extends State<GamePage> with SingleTickerProviderStateMixin
         case GuessResult.tooLow:
           _message = '$guess 太小了！';
           _shakeController.forward(from: 0);
+          break;
         case GuessResult.tooHigh:
           _message = '$guess 太大了！';
           _shakeController.forward(from: 0);
+          break;
         case GuessResult.correct:
           _message = '💥 踩到了！答案就是 $guess';
           _showBomb = true;
+          break;
       }
     });
 
@@ -113,7 +118,6 @@ class _GamePageState extends State<GamePage> with SingleTickerProviderStateMixin
                   const Text('🤔', style: TextStyle(fontSize: 80)),
                   const SizedBox(height: 12),
                 ],
-
                 Text(
                   '猜測範圍',
                   style: theme.textTheme.titleMedium?.copyWith(
@@ -126,7 +130,8 @@ class _GamePageState extends State<GamePage> with SingleTickerProviderStateMixin
                   builder: (context, child) {
                     final progress = _shakeController.value;
                     final offset = _shakeController.isAnimating
-                        ? 10 * (0.5 - progress).abs() *
+                        ? 10 *
+                            (0.5 - progress).abs() *
                             (progress < 0.5 ? 1 : -1)
                         : 0.0;
                     return Transform.translate(
@@ -143,7 +148,6 @@ class _GamePageState extends State<GamePage> with SingleTickerProviderStateMixin
                   ),
                 ),
                 const SizedBox(height: 24),
-
                 if (!_game.isGameOver) ...[
                   SizedBox(
                     width: 200,
@@ -191,7 +195,6 @@ class _GamePageState extends State<GamePage> with SingleTickerProviderStateMixin
                     ),
                   ),
                 ],
-
                 const SizedBox(height: 20),
                 if (_message.isNotEmpty)
                   Container(
@@ -215,7 +218,6 @@ class _GamePageState extends State<GamePage> with SingleTickerProviderStateMixin
                       textAlign: TextAlign.center,
                     ),
                   ),
-
                 const SizedBox(height: 20),
                 if (_game.guesses.isNotEmpty)
                   Text(
@@ -233,4 +235,3 @@ class _GamePageState extends State<GamePage> with SingleTickerProviderStateMixin
     );
   }
 }
-
