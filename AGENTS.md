@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-**ipay** — Flutter 版本的 I-Pay（支付應用程式）。使用 Flutter 框架，支援 Web 和 Linux 桌面平台。
+**ipay** — Flutter 版本的 I-Pay，一個類似「終極密碼」的猜數字遊戲。使用 Flutter 框架，支援 Web 和 Linux 桌面平台。
 
 ## Cursor Cloud specific instructions
 
